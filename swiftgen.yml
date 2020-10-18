@@ -1,0 +1,12 @@
+strings:
+  inputs: NewsApp/Base.lproj
+  outputs:
+    - templateName: structured-swift5
+      output: NewsApp/Resources/SwiftGen/Strings.swift
+xcassets:
+  inputs:
+    - NewsApp/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      output: NewsApp/Resources/SwiftGen/Assets.swift
+
