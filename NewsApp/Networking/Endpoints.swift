@@ -54,8 +54,10 @@ extension Endpoints: EndPointType {
     
     var params: [String: String] {
         switch self {
-        case .newsFeed, .topNewsFeed:
+        case .newsFeed:
             return ["q": "apple"]
+        case .topNewsFeed:
+            return ["q": "trump"]
         }
     }
 }

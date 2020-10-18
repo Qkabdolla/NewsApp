@@ -28,6 +28,6 @@ class DBNewsModel: Object {
         self.date = ""
         self.author = item.author ?? ""
         self.content = item.content ?? ""
-        self.image = item.urlToImage
+        self.image = item.urlToImage ?? ""
     }
 }
