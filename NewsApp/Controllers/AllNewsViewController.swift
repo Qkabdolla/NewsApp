@@ -11,6 +11,7 @@ import UIKit
 class AllNewsViewController: UITableViewController {
     
     // MARK: - Properties
+    weak var coordinator: AllNewsCoordinator?
     private let viewModel = NewsViewModel()
     
     private lazy var refresher: UIRefreshControl = {
@@ -36,7 +37,7 @@ class AllNewsViewController: UITableViewController {
     
     // MARK: - Helpers
     private func configureUI() {
-        navigationItem.title = L10n.moreNewsTitle
+        title = L10n.moreNewsTitle
     }
     
     private func configureTableView() {
@@ -64,8 +65,7 @@ extension AllNewsViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = DetailViewController(news: viewModel.getOneNews(index: indexPath.row))
-        navigationController?.pushViewController(viewController, animated: true)
+        coordinator?.presentDetail(news: viewModel.getOneNews(index: indexPath.row))
     }
     
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

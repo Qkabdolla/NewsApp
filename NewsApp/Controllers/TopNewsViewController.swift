@@ -11,6 +11,7 @@ import UIKit
 class TopNewsViewController: UITableViewController {
     
     // MARK: - Properties
+    weak var coordinator: TopNewsCoordinator?
     private let viewModel = NewsViewModel()
     
     // MARK: - Lifecycle
@@ -39,7 +40,7 @@ class TopNewsViewController: UITableViewController {
     
     // MARK: - Helpers
     private func configureUI() {
-        navigationItem.title = L10n.newsTitle
+        title = L10n.newsTitle
     }
     
     private func configureTableView() {
@@ -61,8 +62,7 @@ extension TopNewsViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = DetailViewController(news: viewModel.getOneNews(index: indexPath.row))
-        navigationController?.pushViewController(viewController, animated: true)
+        coordinator?.presentDetail(news: viewModel.getOneNews(index: indexPath.row))
     }
     
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {

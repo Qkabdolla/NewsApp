@@ -22,7 +22,7 @@ class SavedViewModel {
             guard let items = item as? DBNewsModel else { return }
             let oneNews = News(author: items.author,
                                title: items.title,
-                               description: items.description,
+                               description: items.shortContent,
                                urlToImage: items.image,
                                publishedAt: items.date,
                                content: items.content)

@@ -11,6 +11,7 @@ import UIKit
 class SavedViewController: UITableViewController {
     
     // MARK: - Properties
+    weak var coordinator: SavedCoordinator?
     private let viewModel = SavedViewModel()
     
     // MARK: - Lifecycle
@@ -35,7 +36,7 @@ class SavedViewController: UITableViewController {
     
     // MARK: - Helpers
     private func configureUI() {
-        navigationItem.title = L10n.savedTitle
+        title = L10n.savedTitle
     }
     
     private func configureTableView() {
@@ -63,8 +64,7 @@ extension SavedViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = DetailViewController(news: viewModel.getOneNews(index: indexPath.row))
-        navigationController?.pushViewController(viewController, animated: true)
+        coordinator?.presentDetail(news: viewModel.getOneNews(index: indexPath.row))
     }
     
 }

@@ -74,6 +74,7 @@ class NewsCell: UITableViewCell {
         descriptionLabel.text = news.description ?? ""
         authorLabel.text = news.author ?? ""
         dateLabel.text = Date.getPrettyDateString(fromString: news.publishedAt)
+        print(news.publishedAt)
         mainImageView.kf.setImage(with: news.imgUrl)
     }
     

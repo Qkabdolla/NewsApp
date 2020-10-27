@@ -9,10 +9,15 @@
 import UIKit
 
 class TabBarController: UITabBarController {
+    
+    // MARK: - Properties
+    let topNewsCoordinator = TopNewsCoordinator(navigationController: UINavigationController())
+    let allNewsCoordinator = AllNewsCoordinator(navigationController: UINavigationController())
+    let savedCoordinator = SavedCoordinator(navigationController: UINavigationController())
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureViewControllers()
         configureUI()
     }
@@ -25,26 +30,12 @@ class TabBarController: UITabBarController {
     }
     
     private func configureViewControllers() {
+        topNewsCoordinator.start()
+        allNewsCoordinator.start()
+        savedCoordinator.start()
         
-        let news = templateNavigationControllers(title: L10n.newsTitle,
-                                                 image: UIImage(named: Asset.Images.literature.name),
-                                                 rootVC: TopNewsViewController())
-        let allNews = templateNavigationControllers(title: L10n.moreNewsTitle,
-                                                    image: UIImage(named: Asset.Images.news.name),
-                                                    rootVC: AllNewsViewController())
-        let saved = templateNavigationControllers(title: L10n.savedTitle,
-                                                  image: UIImage(named: Asset.Images.save.name),
-                                                  rootVC: SavedViewController())
-        
-        viewControllers = [news, allNews, saved]
+        viewControllers = [topNewsCoordinator.navigationController,
+                           allNewsCoordinator.navigationController,
+                           savedCoordinator.navigationController]
     }
-    
-    private func templateNavigationControllers(title: String, image: UIImage?, rootVC: UIViewController) -> UINavigationController {
-        let nav = UINavigationController(rootViewController: rootVC)
-        nav.tabBarItem.image = image
-        nav.tabBarItem.title = title
-        nav.navigationBar.barTintColor = .white
-        return nav
-    }
-    
 }
